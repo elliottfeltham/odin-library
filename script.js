@@ -55,9 +55,14 @@ function displayBooks() {
 }
 
 addButton.addEventListener("click", function () {
-	addBookToLibrary("It", "Stephen King", 1116, "Not Read");
+	addBookToLibrary();
 	displayBooks();
 });
+
+// addButton.addEventListener("click", function () {
+// 	addBookToLibrary("It", "Stephen King", 1116, "Not Read");
+// 	displayBooks();
+// });
 
 // displayButton.addEventListener("click", displayBooks);
 
