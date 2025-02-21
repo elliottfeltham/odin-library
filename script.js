@@ -1,7 +1,6 @@
 const libraryContainer = document.querySelector(".library-container");
 const addButton = document.querySelector("#addButton");
 const clearButton = document.querySelector("#clearButton");
-const displayButton = document.querySelector("#displayButton");
 
 const myLibrary = [];
 
@@ -27,20 +26,40 @@ function clearLibrary() {
 }
 
 function displayBooks() {
-	for (let books in myLibrary) {
+	libraryContainer.innerHTML = "";
+
+	for (let book of myLibrary) {
 		const card = document.createElement("div");
 		card.classList.add("book-card");
-		card.textContent = myLibrary[books].info();
+
+		const title = document.createElement("h3");
+		title.classList.add("title");
+
+		const author = document.createElement("span");
+		author.classList.add("author");
+
+		const pages = document.createElement("span");
+		pages.classList.add("pages");
+
+		const read = document.createElement("span");
+		read.classList.add("read");
+
+		title.textContent = `${book.title}`;
+		author.textContent = `By: ${book.author}`;
+		pages.textContent = `Pages: ${book.pages}`;
+		read.textContent = `Status: ${book.read}`;
+
+		card.append(title, author, pages, read);
 		libraryContainer.append(card);
 	}
 }
 
 addButton.addEventListener("click", function () {
-	addBookToLibrary("It", "Stephen King", 1116, "not read yet");
+	addBookToLibrary("It", "Stephen King", 1116, "Not Read");
 	displayBooks();
 });
 
-displayButton.addEventListener("click", displayBooks);
+// displayButton.addEventListener("click", displayBooks);
 
 clearButton.addEventListener("click", clearLibrary);
 
