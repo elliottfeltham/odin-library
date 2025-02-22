@@ -118,6 +118,7 @@ h6 {
 	height: 250px;
 	width: 200px;
 	border: 1px solid black;
+	border-radius: 1rem;
 	box-shadow: 0.5rem 0.5rem 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -129,6 +130,7 @@ h6 {
 	left: 50%;
 	transform: translate(-50%, -50%);
 	border: 1px solid black;
+	border-radius: 1rem;
 	box-shadow: 0.5rem 0.5rem 0px rgba(0, 0, 0, 0.1);
 }
 
@@ -154,20 +156,25 @@ h6 {
 /* -- Content Styles -- */
 
 button {
-	height: 4rem;
+	height: 3rem;
 	width: 8rem;
-	font-size: 1.5rem;
+	font-size: 1.2rem;
 	margin: 0rem 2rem 2rem;
 	border-radius: 1rem;
 	cursor: pointer;
 }
 
+.remove-book-button,
 .book-form button {
 	height: 2rem;
 	width: 4rem;
 	font-size: 1rem;
 	border-radius: 0.5rem;
 	margin: 0;
+}
+
+.remove-book-button {
+	width: 5rem;
 }
 
 #close-form-btn {
