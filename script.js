@@ -1,10 +1,19 @@
+// DOM References //
+
+// Page
 const libraryContainer = document.querySelector(".library-container");
 const addButton = document.querySelector("#addButton");
 const clearButton = document.querySelector("#clearButton");
+
+// Form
 const bookDialog = document.querySelector("#book-form-dialog");
 const form = document.querySelector(".book-form");
-const formAddButton = document.querySelector("#add-form-btn");
-const formCloseButton = document.querySelector("#close-form-btn");
+const formAddButton = document.querySelector(".add-form-btn");
+const formCloseButton = document.querySelector(".close-form-btn");
+const titleInput = document.querySelector("#title");
+const authorInput = document.querySelector("#author");
+const pagesInput = document.querySelector("#pages");
+const readInput = document.querySelector("input[name='read']:checked");
 
 // Create an array to add too
 const myLibrary = [];
@@ -68,7 +77,7 @@ function displayBooks() {
 // Clear library
 function clearLibrary() {
 	myLibrary.length = 0;
-	libraryContainer.innerHTML = "";
+	displayBooks();
 }
 
 // Close form
@@ -88,12 +97,11 @@ addButton.addEventListener("click", () => {
 formAddButton.addEventListener("click", (event) => {
 	event.preventDefault();
 
-	const title = document.querySelector("#title").value.trim();
-	const author = document.querySelector("#author").value.trim();
-	const pages = document.querySelector("#pages").value.trim();
-	const read =
-		document.querySelector("input[name='read']:checked")?.value ||
-		"Not Read";
+	const title = titleInput.value.trim();
+	const author = authorInput.value.trim();
+	const pages = pagesInput.value.trim();
+	// Optional chaining incase user skips the buttons, defaults to "Not Read"
+	const read = readInput?.value || "Not Read";
 
 	addBookToLibrary(title, author, pages, read);
 
