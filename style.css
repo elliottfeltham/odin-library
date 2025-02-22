@@ -36,6 +36,12 @@ select {
 	font: inherit;
 }
 
+ul,
+ol {
+	list-style: none;
+	padding: 0;
+}
+
 p,
 h1,
 h2,
@@ -101,7 +107,7 @@ h6 {
 	justify-content: center;
 	position: relative;
 	border-bottom: 1px none black;
-	box-shadow: 0rem 0.2rem 1px rgba(0, 0, 0, 0.1);
+	box-shadow: 0rem 0.2rem 4px rgba(0, 0, 0, 0.1);
 }
 
 .book-card {
@@ -112,7 +118,37 @@ h6 {
 	height: 250px;
 	width: 200px;
 	border: 1px solid black;
+	box-shadow: 0.5rem 0.5rem 4px rgba(0, 0, 0, 0.1);
+}
+
+#book-form-dialog {
+	height: 600px;
+	width: 400px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	border: 1px solid black;
 	box-shadow: 0.5rem 0.5rem 0px rgba(0, 0, 0, 0.1);
+}
+
+.book-form {
+	position: relative;
+	height: 500px;
+	width: 350px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.book-form ul {
+	height: 400px;
+	width: 300px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
 }
 
 /* -- Content Styles -- */
@@ -123,10 +159,40 @@ button {
 	font-size: 1.5rem;
 	margin: 0rem 2rem 2rem;
 	border-radius: 1rem;
+	cursor: pointer;
+}
+
+.book-form button {
+	height: 2rem;
+	width: 4rem;
+	font-size: 1rem;
+	border-radius: 0.5rem;
+	margin: 0;
+}
+
+#close-form-btn {
+	position: absolute;
+	top: 0;
+	right: 0;
 }
 
 h1 {
 	font-size: 2rem;
+}
+
+/* label {
+	padding: 1rem;
+} */
+input {
+	border: 1px solid black;
+	width: 300px;
+}
+
+fieldset {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
 /* Media Queries */

@@ -1,6 +1,10 @@
 const libraryContainer = document.querySelector(".library-container");
 const addButton = document.querySelector("#addButton");
 const clearButton = document.querySelector("#clearButton");
+const bookDialog = document.querySelector("#book-form-dialog");
+const form = document.querySelector(".book-form");
+const formAddButton = bookDialog.querySelector("#add-form-btn");
+const formCloseButton = document.querySelector("#close-form-btn");
 
 const myLibrary = [];
 
@@ -55,31 +59,30 @@ function displayBooks() {
 }
 
 addButton.addEventListener("click", function () {
-	addBookToLibrary();
-	displayBooks();
+	bookDialog.showModal();
 });
 
-// addButton.addEventListener("click", function () {
-// 	addBookToLibrary("It", "Stephen King", 1116, "Not Read");
-// 	displayBooks();
-// });
+formAddButton.addEventListener("click", (event) => {
+	event.preventDefault();
 
-// displayButton.addEventListener("click", displayBooks);
+	const title = document.querySelector("#title").value.trim();
+	const author = document.querySelector("#author").value.trim();
+	const pages = document.querySelector("#pages").value.trim();
+	const read =
+		document.querySelector("input[name='read']:checked")?.value ||
+		"Not Read";
+
+	addBookToLibrary(title, author, pages, read);
+
+	displayBooks();
+	form.reset();
+	bookDialog.close();
+});
+
+formCloseButton.addEventListener("click", (event) => {
+	event.preventDefault();
+	form.reset();
+	bookDialog.close();
+});
 
 clearButton.addEventListener("click", clearLibrary);
-
-// addBookToLibrary("The Hobbit", "J.R.R Tolkien", 295, "not read yet");
-// addBookToLibrary("Animal Farm", "George Orwell", 152, "read");
-// addBookToLibrary(
-// 	"Harry Potter and the Philosopher's Stone",
-// 	"J.K. Rowling",
-// 	223,
-// 	"not read yet"
-// );
-addButton.addEventListener("click", function () {
-	console.log(myLibrary);
-});
-
-// console.log(myLibrary[0].info());
-// console.log(myLibrary[1].info());
-// console.log(myLibrary[2].info());
