@@ -1,4 +1,4 @@
-/* Reset */
+/* -- Reset -- */
 
 *,
 *::before,
@@ -70,7 +70,8 @@ h6 {
 .centered {
 	text-align: center;
 }
-/* Layout Styles */
+
+/* -- Layout Styles -- */
 
 .page-container {
 	display: grid;
@@ -165,6 +166,7 @@ button {
 }
 
 .remove-book-button,
+.read-status-button,
 .book-form button {
 	height: 2rem;
 	width: 4rem;
@@ -177,7 +179,11 @@ button {
 	width: 5rem;
 }
 
-#close-form-btn {
+.read-status-button {
+	width: 7rem;
+}
+
+.close-form-btn {
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -187,9 +193,6 @@ h1 {
 	font-size: 2rem;
 }
 
-/* label {
-	padding: 1rem;
-} */
 input {
 	border: 1px solid black;
 	width: 300px;
@@ -202,7 +205,7 @@ fieldset {
 	align-items: center;
 }
 
-/* Media Queries */
+/* -- Media Queries -- */
 
 @media screen and (max-width: 600px) {
 	.library-container {

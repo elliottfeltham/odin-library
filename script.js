@@ -13,7 +13,6 @@ const formCloseButton = document.querySelector(".close-form-btn");
 const titleInput = document.querySelector("#title");
 const authorInput = document.querySelector("#author");
 const pagesInput = document.querySelector("#pages");
-const readInput = document.querySelector("input[name='read']:checked");
 
 // Create an array to add too
 const myLibrary = [];
@@ -26,10 +25,12 @@ function Book(title, author, pages, read) {
 	this.author = author;
 	this.pages = Number(pages);
 	this.read = read;
-	this.info = function () {
-		return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`;
-	};
 }
+
+// Prototype method to change read status
+Book.prototype.changeReadStatus = function () {
+	this.read = this.read === "Not Read" ? "Read" : "Not Read";
+};
 
 // Add books to library
 function addBookToLibrary(title, author, pages, read) {
@@ -69,7 +70,19 @@ function displayBooks() {
 		removeBookButton.classList.add("remove-book-button");
 		removeBookButton.textContent = "Remove";
 
-		card.append(title, author, pages, read, removeBookButton);
+		const readStatusButton = document.createElement("button");
+		readStatusButton.classList.add("read-status-button");
+		readStatusButton.textContent = "Toggle Read";
+
+		card.append(
+			title,
+			author,
+			pages,
+			read,
+			removeBookButton,
+			readStatusButton
+		);
+
 		libraryContainer.append(card);
 	});
 }
@@ -100,8 +113,11 @@ formAddButton.addEventListener("click", (event) => {
 	const title = titleInput.value.trim();
 	const author = authorInput.value.trim();
 	const pages = pagesInput.value.trim();
-	// Optional chaining incase user skips the buttons, defaults to "Not Read"
-	const read = readInput?.value || "Not Read";
+
+	// Optional chaining avoids error if user skips the buttons, defaults to "Not Read"
+	const read =
+		document.querySelector("input[name='read']:checked")?.value ||
+		"Not Read";
 
 	addBookToLibrary(title, author, pages, read);
 
@@ -120,6 +136,18 @@ libraryContainer.addEventListener("click", (event) => {
 	if (event.target.classList.contains("remove-book-button")) {
 		const index = event.target.parentElement.dataset.indexNumber;
 		myLibrary.splice(index, 1);
+		displayBooks();
+	}
+});
+
+// Change the read status on the individual book that's clicked
+libraryContainer.addEventListener("click", (event) => {
+	if (event.target.classList.contains("read-status-button")) {
+		const bookCard = event.target.parentElement;
+		const bookIndex = bookCard.dataset.indexNumber;
+		const book = myLibrary[bookIndex];
+
+		book.changeReadStatus();
 		displayBooks();
 	}
 });
