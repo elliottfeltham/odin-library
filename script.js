@@ -19,18 +19,25 @@ const myLibrary = [];
 
 // Functions //
 
-// Book Constructor
-function Book(title, author, pages, read) {
-	this.title = title;
-	this.author = author;
-	this.pages = Number(pages);
-	this.read = read;
-}
+// Book class
+class Book {
+	constructor(title, author, pages, read) {
+		this.title = title;
+		this.author = author;
+		this.pages = Number(pages);
+		this._read = read;
+	}
 
-// Prototype method to change read status
-Book.prototype.changeReadStatus = function () {
-	this.read = this.read === "Not Read" ? "Read" : "Not Read";
-};
+	// Getter for read status
+	get read() {
+		return this._read;
+	}
+
+	// Method to toggle read status
+	changeReadStatus() {
+		this._read = this._read === "Not Read" ? "Read" : "Not Read";
+	}
+}
 
 // Add books to library
 function addBookToLibrary(title, author, pages, read) {
